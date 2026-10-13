@@ -4,20 +4,14 @@ import {
   Send, 
   Mic, 
   MicOff, 
-  Sparkles, 
   Bot, 
   User, 
   Baby, 
   MapPin, 
-  ShieldAlert, 
-  ArrowRight, 
   Volume2,
-  Trash2,
-  Scale,
   Leaf,
   Droplets,
-  HelpCircle,
-  Lightbulb
+  Scale
 } from 'lucide-react';
 
 interface ChatMessage {
@@ -81,7 +75,6 @@ export const WebAIEcoTutorView: React.FC<WebAIEcoTutorViewProps> = ({
     scrollToBottom();
   }, [messages, isLoading]);
 
-  // Handle auto-send if initialQuery provided
   useEffect(() => {
     if (initialQuery && initialQuery.trim()) {
       handleSendMessage(initialQuery);
@@ -162,45 +155,45 @@ export const WebAIEcoTutorView: React.FC<WebAIEcoTutorViewProps> = ({
   };
 
   return (
-    <div className="w-full min-h-full bg-slate-900 text-slate-100 flex flex-col">
+    <div className="w-full min-h-full bg-[#F7F6F0] text-[#1B2D22] flex flex-col font-sans">
       {/* Top Header */}
-      <div className="bg-slate-950 border-b border-slate-800 px-6 py-3.5 flex items-center justify-between">
+      <div className="bg-[#FAF9F5] hairline-b px-6 py-3.5 flex items-center justify-between">
         <div className="flex items-center gap-3">
           <button
             onClick={onBack}
-            className="p-2 rounded-xl bg-slate-900 hover:bg-slate-800 text-slate-300 transition-colors flex items-center gap-1.5 text-xs font-semibold cursor-pointer border border-slate-800"
+            className="px-3 py-1.5 rounded-xl bg-white hover:bg-[#F0ECE1] text-[#143628] transition-colors flex items-center gap-1.5 text-xs font-bold border border-[#DDD7C9] cursor-pointer"
           >
-            <ArrowLeft className="w-4 h-4" />
+            <ArrowLeft className="w-3.5 h-3.5" />
             <span>Back to Portal</span>
           </button>
-          <div className="text-xs text-slate-400 hidden sm:flex items-center gap-2">
+          <div className="text-xs text-[#526357] hidden sm:flex items-center gap-2">
             <span>Prakriti AI Eco-Tutor</span>
             <span>/</span>
-            <span className="text-white font-semibold flex items-center gap-1">
-              <MapPin className="w-3.5 h-3.5 text-emerald-400" />
-              {wardName} Context Active
+            <span className="text-[#143628] font-bold flex items-center gap-1">
+              <MapPin className="w-3.5 h-3.5 text-[#1E4B35]" />
+              {wardName} Municipal Knowledge Active
             </span>
           </div>
         </div>
 
-        {/* Controls: Language and ELI-10 Mode */}
+        {/* Controls */}
         <div className="flex items-center gap-2">
           <button
             onClick={() => setIsEli10(!isEli10)}
             className={`px-3 py-1.5 rounded-xl text-xs font-bold border transition-all flex items-center gap-1.5 cursor-pointer ${
               isEli10
-                ? 'bg-amber-500 text-slate-950 border-amber-400 shadow-md'
-                : 'bg-slate-900 border-slate-800 text-slate-300 hover:bg-slate-850'
+                ? 'bg-[#1E4B35] text-white border-[#1E4B35]'
+                : 'bg-white border-[#DDD7C9] text-[#143628] hover:bg-[#FAF9F5]'
             }`}
           >
-            <Baby className="w-4 h-4" />
+            <Baby className="w-3.5 h-3.5" />
             <span>ELI-10 Mode {isEli10 ? 'ON' : 'OFF'}</span>
           </button>
 
           <select
             value={selectedLanguage}
             onChange={(e) => setSelectedLanguage(e.target.value as any)}
-            className="px-3 py-1.5 bg-slate-900 border border-slate-800 rounded-xl text-xs font-semibold text-slate-200 focus:outline-emerald-500 cursor-pointer"
+            className="px-3 py-1.5 bg-white border border-[#DDD7C9] rounded-xl text-xs font-bold text-[#143628] focus:outline-[#1E4B35] cursor-pointer"
           >
             <option value="English">English</option>
             <option value="Hindi">हिन्दी (Hindi)</option>
@@ -210,33 +203,33 @@ export const WebAIEcoTutorView: React.FC<WebAIEcoTutorViewProps> = ({
         </div>
       </div>
 
-      {/* Main Chat Workspace Grid (Left Sidebar Topics + Right Large Chat Console) */}
+      {/* Main Console */}
       <div className="max-w-7xl mx-auto w-full px-6 py-6 flex-1 flex flex-col md:flex-row gap-6 overflow-hidden">
         
-        {/* Left Topic Quick-Prompts Panel (Hidden on small mobile, visible on desktop) */}
+        {/* Left Topics */}
         <div className="hidden md:flex flex-col w-72 lg:w-80 space-y-4 shrink-0">
-          <div className="bg-slate-950/80 border border-slate-800 rounded-3xl p-5 space-y-3">
-            <h3 className="text-xs font-bold text-slate-400 uppercase tracking-wider">
+          <div className="bg-white border border-[#DDD7C9] rounded-3xl p-5 space-y-3 shadow-xs">
+            <h3 className="text-xs font-bold text-[#526357] uppercase tracking-wider">
               Statutory Knowledge Bases
             </h3>
             <div className="space-y-2 text-xs">
-              <div className="p-2.5 rounded-xl bg-slate-900 border border-slate-800 flex items-center gap-2.5 text-slate-300">
-                <Leaf className="w-4 h-4 text-emerald-400" />
+              <div className="p-2.5 rounded-xl bg-[#FAF9F5] border border-[#DDD7C9] flex items-center gap-2.5 text-[#143628]">
+                <Leaf className="w-4 h-4 text-[#1E4B35]" />
                 <span>SWM Rules 2016 By-Laws</span>
               </div>
-              <div className="p-2.5 rounded-xl bg-slate-900 border border-slate-800 flex items-center gap-2.5 text-slate-300">
-                <Droplets className="w-4 h-4 text-teal-400" />
-                <span>Water Act 1974 &amp; RWH Mandates</span>
+              <div className="p-2.5 rounded-xl bg-[#FAF9F5] border border-[#DDD7C9] flex items-center gap-2.5 text-[#143628]">
+                <Droplets className="w-4 h-4 text-[#1C5D82]" />
+                <span>Water Act &amp; RWH Mandates</span>
               </div>
-              <div className="p-2.5 rounded-xl bg-slate-900 border border-slate-800 flex items-center gap-2.5 text-slate-300">
-                <Scale className="w-4 h-4 text-purple-400" />
+              <div className="p-2.5 rounded-xl bg-[#FAF9F5] border border-[#DDD7C9] flex items-center gap-2.5 text-[#143628]">
+                <Scale className="w-4 h-4 text-[#9E4A28]" />
                 <span>State Tree Preservation Acts</span>
               </div>
             </div>
           </div>
 
-          <div className="bg-slate-950/80 border border-slate-800 rounded-3xl p-5 space-y-2.5 flex-1 overflow-y-auto">
-            <h3 className="text-xs font-bold text-slate-400 uppercase tracking-wider">
+          <div className="bg-white border border-[#DDD7C9] rounded-3xl p-5 space-y-2.5 flex-1 overflow-y-auto shadow-xs">
+            <h3 className="text-xs font-bold text-[#526357] uppercase tracking-wider">
               Frequent Citizen Inquiries
             </h3>
             <div className="space-y-2">
@@ -244,7 +237,7 @@ export const WebAIEcoTutorView: React.FC<WebAIEcoTutorViewProps> = ({
                 <button
                   key={idx}
                   onClick={() => handleSendMessage(q)}
-                  className="w-full text-left p-2.5 rounded-xl bg-slate-900 hover:bg-slate-850 hover:border-emerald-500/50 border border-slate-800 text-xs text-slate-300 transition-all cursor-pointer leading-relaxed"
+                  className="w-full text-left p-2.5 rounded-xl bg-[#FAF9F5] hover:bg-[#F2EFE8] border border-[#DDD7C9] text-xs text-[#143628] transition-all cursor-pointer leading-relaxed"
                 >
                   "{q}"
                 </button>
@@ -253,10 +246,10 @@ export const WebAIEcoTutorView: React.FC<WebAIEcoTutorViewProps> = ({
           </div>
         </div>
 
-        {/* Right Large Chat Stream Console */}
-        <div className="flex-1 bg-slate-950/90 border border-slate-800 rounded-3xl flex flex-col overflow-hidden shadow-2xl">
+        {/* Right Chat Canvas */}
+        <div className="flex-1 bg-white border border-[#DDD7C9] rounded-3xl flex flex-col overflow-hidden shadow-xs">
           
-          {/* Messages Stream */}
+          {/* Stream */}
           <div className="flex-1 overflow-y-auto p-6 space-y-5">
             {messages.map((msg) => {
               const isUser = msg.sender === 'user';
@@ -267,43 +260,42 @@ export const WebAIEcoTutorView: React.FC<WebAIEcoTutorViewProps> = ({
                 >
                   <div className="flex items-start gap-3 max-w-[85%]">
                     {!isUser && (
-                      <div className="w-8 h-8 rounded-xl bg-gradient-to-tr from-emerald-600 to-teal-500 text-slate-950 flex items-center justify-center font-bold shrink-0 shadow-md">
-                        <Bot className="w-5 h-5" />
+                      <div className="w-8 h-8 rounded-xl bg-[#1E4B35] text-white flex items-center justify-center font-bold shrink-0">
+                        <Bot className="w-4 h-4" />
                       </div>
                     )}
 
                     <div
                       className={`p-4 rounded-3xl text-xs sm:text-sm leading-relaxed ${
                         isUser
-                          ? 'bg-emerald-600 text-white rounded-tr-xs shadow-md'
-                          : 'bg-slate-900 border border-slate-800 text-slate-200 rounded-tl-xs shadow-lg'
+                          ? 'bg-[#1E4B35] text-white rounded-tr-xs'
+                          : 'bg-[#FAF9F5] border border-[#DDD7C9] text-[#143628] rounded-tl-xs'
                       }`}
                     >
                       <p className="whitespace-pre-line">{msg.text}</p>
 
-                      {/* Text to Speech Trigger */}
                       {!isUser && (
-                        <div className="mt-3 pt-2.5 border-t border-slate-800 flex items-center justify-between text-xs text-slate-400">
+                        <div className="mt-3 pt-2.5 hairline-t flex items-center justify-between text-xs text-[#526357]">
                           <span>{msg.timestamp}</span>
                           <button
                             onClick={() => handleSpeakText(msg.text)}
-                            className="text-emerald-400 hover:text-emerald-300 flex items-center gap-1 cursor-pointer font-semibold"
+                            className="text-[#1E4B35] font-bold flex items-center gap-1 cursor-pointer"
                           >
                             <Volume2 className="w-3.5 h-3.5" />
-                            <span>Read Out Aloud</span>
+                            <span>Read Aloud</span>
                           </button>
                         </div>
                       )}
                     </div>
 
                     {isUser && (
-                      <div className="w-8 h-8 rounded-xl bg-slate-800 text-slate-300 flex items-center justify-center font-bold shrink-0">
+                      <div className="w-8 h-8 rounded-xl bg-[#EFECE3] text-[#143628] flex items-center justify-center font-bold shrink-0">
                         <User className="w-4 h-4" />
                       </div>
                     )}
                   </div>
 
-                  {/* Suggestion Action Buttons */}
+                  {/* Action Deep-Links */}
                   {!isUser && msg.suggestedActions && msg.suggestedActions.length > 0 && (
                     <div className="mt-2.5 ml-11 flex flex-wrap gap-2">
                       {msg.suggestedActions.map((act, aIdx) => (
@@ -313,11 +305,10 @@ export const WebAIEcoTutorView: React.FC<WebAIEcoTutorViewProps> = ({
                             if (act.type === 'lesson') onSelectLesson(act.target);
                             else onSelectMission(act.target);
                           }}
-                          className="px-3 py-1.5 rounded-xl bg-emerald-950/80 border border-emerald-800 hover:border-emerald-500 text-emerald-300 text-xs font-bold transition-colors flex items-center gap-1.5 cursor-pointer shadow-md"
+                          className="px-3 py-1.5 rounded-xl bg-[#FAF9F5] border border-[#DDD7C9] hover:border-[#1E4B35] text-[#1E4B35] text-xs font-bold transition-colors flex items-center gap-1.5 cursor-pointer"
                         >
-                          <Sparkles className="w-3.5 h-3.5 text-emerald-400" />
                           <span>{act.title}</span>
-                          <ArrowRight className="w-3 h-3" />
+                          <span>→</span>
                         </button>
                       ))}
                     </div>
@@ -326,15 +317,13 @@ export const WebAIEcoTutorView: React.FC<WebAIEcoTutorViewProps> = ({
               );
             })}
 
-            {/* Loading Indicator */}
             {isLoading && (
               <div className="flex items-center gap-3">
-                <div className="w-8 h-8 rounded-xl bg-emerald-600 text-slate-950 flex items-center justify-center font-bold">
-                  <Bot className="w-5 h-5 animate-spin" />
+                <div className="w-8 h-8 rounded-xl bg-[#1E4B35] text-white flex items-center justify-center font-bold">
+                  <Bot className="w-4 h-4 animate-spin" />
                 </div>
-                <div className="p-3.5 bg-slate-900 border border-slate-800 rounded-2xl text-xs text-slate-400 flex items-center gap-2">
-                  <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
-                  <span>Consulting SWM Rules 2016 and {wardName} data via Gemini 3.8 Flash...</span>
+                <div className="p-3.5 bg-[#FAF9F5] border border-[#DDD7C9] rounded-2xl text-xs text-[#526357]">
+                  Consulting SWM Rules 2016 and {wardName} data via Gemini 3.8 Flash...
                 </div>
               </div>
             )}
@@ -342,11 +331,11 @@ export const WebAIEcoTutorView: React.FC<WebAIEcoTutorViewProps> = ({
             <div ref={messagesEndRef} />
           </div>
 
-          {/* Bottom Message Input Console */}
-          <div className="p-4 bg-slate-950 border-t border-slate-800 space-y-3">
+          {/* Input Console */}
+          <div className="p-4 bg-[#FAF9F5] hairline-t space-y-3">
             {isRecording && (
-              <div className="p-2.5 bg-rose-950/60 border border-rose-800 text-rose-300 rounded-xl text-center text-xs font-bold animate-pulse flex items-center justify-center gap-2">
-                <Mic className="w-4 h-4 text-rose-400" />
+              <div className="p-2.5 bg-[#FDF0EE] border border-[#E39D90] text-[#9E4A28] rounded-xl text-center text-xs font-bold animate-pulse flex items-center justify-center gap-2">
+                <Mic className="w-4 h-4" />
                 <span>Listening in {selectedLanguage}... (Speak now)</span>
               </div>
             )}
@@ -356,12 +345,12 @@ export const WebAIEcoTutorView: React.FC<WebAIEcoTutorViewProps> = ({
                 onClick={handleToggleVoice}
                 className={`p-3 rounded-2xl border transition-all cursor-pointer ${
                   isRecording
-                    ? 'bg-rose-500 text-white border-rose-600'
-                    : 'bg-slate-900 hover:bg-slate-850 text-slate-300 border-slate-800'
+                    ? 'bg-[#9E4A28] text-white border-[#9E4A28]'
+                    : 'bg-white text-[#143628] border-[#DDD7C9]'
                 }`}
                 title="Voice Input"
               >
-                {isRecording ? <MicOff className="w-5 h-5" /> : <Mic className="w-5 h-5" />}
+                {isRecording ? <MicOff className="w-4 h-4" /> : <Mic className="w-4 h-4" />}
               </button>
 
               <input
@@ -369,17 +358,17 @@ export const WebAIEcoTutorView: React.FC<WebAIEcoTutorViewProps> = ({
                 value={inputText}
                 onChange={(e) => setInputText(e.target.value)}
                 onKeyDown={(e) => e.key === 'Enter' && handleSendMessage()}
-                placeholder={isEli10 ? "Ask a fun eco question (ELI-10 mode)..." : `Ask Prakriti AI about ${wardName} laws, waste, or trees...`}
-                className="flex-1 px-4 py-3 bg-slate-900 border border-slate-800 rounded-2xl text-xs sm:text-sm text-white placeholder-slate-500 focus:outline-emerald-500"
+                placeholder={isEli10 ? "Ask an easy question (ELI-10 mode)..." : `Ask Prakriti AI about ${wardName} laws, waste, or trees...`}
+                className="flex-1 px-4 py-3 bg-white border border-[#DDD7C9] rounded-2xl text-xs sm:text-sm text-[#143628] placeholder-[#7B8D80] focus:outline-[#1E4B35]"
               />
 
               <button
                 onClick={() => handleSendMessage()}
                 disabled={!inputText.trim() || isLoading}
-                className="px-5 py-3 bg-emerald-600 hover:bg-emerald-500 disabled:bg-slate-800 disabled:text-slate-500 text-white font-bold text-xs sm:text-sm rounded-2xl transition-all shadow-md flex items-center gap-2 cursor-pointer"
+                className="px-5 py-3 bg-[#1E4B35] hover:bg-[#153827] disabled:bg-[#EAE6DC] disabled:text-[#8D9E92] text-white font-bold text-xs sm:text-sm rounded-2xl transition-all shadow-xs flex items-center gap-2 cursor-pointer"
               >
                 <span>Send</span>
-                <Send className="w-4 h-4" />
+                <Send className="w-3.5 h-3.5" />
               </button>
             </div>
           </div>
