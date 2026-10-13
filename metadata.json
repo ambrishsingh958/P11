@@ -1,0 +1,6 @@
+{
+  "name": "PrajaPulse - Environmental Education & Training",
+  "description": "Production-ready implementation & interactive ecosystem for PrajaPulse Layer 11: Environmental Education & Training, featuring AI Eco-Tutor, civic field missions, courses, and certifications.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
